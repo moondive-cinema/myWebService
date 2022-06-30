@@ -1,0 +1,14 @@
+<h2> Post Archives for {{ month|date:"Y년 m월" }} </h2>
+
+<div>
+    <ul>
+        {% for post in monthly_posts %}
+            <li> 
+                {{ post.created_date|date:"Y-m-d" }}:&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{{ post.get_absolute_url }}">
+                    <strong> {{ post.title }} </strong>
+                </a>
+            </li>
+        {% endfor %}       
+    </ul>
+</div>

@@ -1,0 +1,16 @@
+body {
+    font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: lightgrey;
+}
+
+/* PAGE STRUCTURE */
+#header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 30px;
+    width: 100%;
+    display: table;
+    background-color: lightsalmon;
+}
