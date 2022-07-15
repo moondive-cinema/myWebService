@@ -1,41 +1,61 @@
 {% extends "base.html" %}
-{% block title %} Home {% endblock %}
 {% load static %}
-{% block extrastyle %} {% static "css/home.css" %} {% endblock %}
+
+{% block title %} Home {% endblock %}
+{% block extra-style %} 
+    <style type="text/css">
+        .home-image {
+            background-image: url('https://images.unsplash.com/photo-1604941138781-78fbefc0d888?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3034&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
+            height: 500px;
+            border-top: 10px solid rgb(199, 183, 163);
+            padding: 20px 0 0 20px;
+        }
+        .title {
+            color: rgb(212, 141, 0);
+            font-weight: bold;
+        }
+        .powered {
+            position: relative;
+            top: 77%;
+            color: rgb(204, 180, 0);
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
-<div id="content_home">
-    <div id="homeimg">
-        <a href="/"> <img src="{% static "img/image.png" %} style="height:256px;"/> </a>
-        <h4 style="margin:0;">This is Django powered web site.</h4>
+    <div class="home-image">
+        <h2 class="title">Django Web Programming</h2>
+        <h4 class="powered"><i class="fas fa-xs fa-arrow-circle-right"></i> &nbsp; Powered by django and bootstrap</h4>
     </div>
-    <hr style="margin: 5px 0;">
-    <h2>Select Application</h2>
-    <table id="applist">
-        <tr>
-            <td><b><i><a href="#">Bookmark</a></i></b></td>
-            <td>You can write your own post and share to others.</td>
-            <td class="Edit"><i><a href="#">Add</a></i></td>
-            <td class="Edit"><i><a href="#">Change</a></i></td>
-        </tr>
-        <tr>
-            <td><b><i><a href="#">Blog</a></i></b></td>
-            <td>You can write your own post and share to others.</td>
-            <td class="Edit"><i><a href="#">Add</a></i></td>
-            <td class="Edit"><i><a href="#">Change</a></i></td>
-        </tr>
-        <tr>
-            <td><b><i><a href="#">Photo</a></i></b></td>
-            <td>You can write your own post and share to others.</td>
-            <td class="Edit"><i><a href="#">Add</a></i></td>
-            <td class="Edit"><i><a href="#">Change</a></i></td>
-        </tr>
-    </table>
-</div>
+
+    <hr style="margin: 10px 0;">
+
+    <div class="row text-center">
+        <div class="col-sm-6">
+            <h3>Bookmark App</h3>
+            <p>Bookmark is a Uniform Resource Identifier (URI) that is stored for later retrieval in any of various storage formats.
+                You can store your own bookmarks by Bookmark application.
+                It's also possible to update or delete your bookmarks. </p>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <h3>Blog App</h3>
+            <p>This application makes it possible to log daily events or write your own interests such as hobbies, techniques, etc. 
+                A typical blog combines text, digital images, and links to other blog, web pages, and other media related to its topic. </p>
+            </p>
+        </div>
+    </div>
+
 {% endblock content %}
 
 {% block footer %}
-<div id="footer">
-    &copy; moondive
+<div class="text-secondary">
+    &copy; moondive 2022
 </div>
 {% endblock footer %}
+
+
+

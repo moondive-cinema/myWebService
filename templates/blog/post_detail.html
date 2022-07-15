@@ -1,20 +1,28 @@
-<h2> {{ post.title }} </h2>
+{% extends "base.html" %}
+{% load static %}
 
-<p class="other_posts">  
-    {% if post.get_previous_by_created_date %}
-        <a href="{{ post.get_previous_post.get_absolute_url }}" title="View Previous Post">  
-            &laquo;--{{ post.get_previous_post }} </a>
-    {% endif %}
-    &nbsp;|&nbsp;
-    {% if post.get_next_by_created_date %}
-        <a href="{{ post.get_next_post.get_absolute_url }}" title="View Next Post">  
-            {{ post.get_next_post }} --&raquo;</a>        
-    {% endif %}
-</p>
+{% block title %} {{ object.title }} {% endblock %}
 
-<p class="date"> {{ post.created_date|date:"Y-m-d" }} </p>
-<br/>
+{% block content %}
 
-<div class="body">
-    {{ post.content|linebreaks}}
-</div>
+    <h2> {{ post.title }} </h2>
+
+    <p class="other_posts">  
+        {% if post.get_previous_by_created_date %}
+            <a href="{{ post.get_previous_post.get_absolute_url }}" title="View Previous Post">  
+                &laquo;--{{ post.get_previous_post }} </a>
+        {% endif %}
+        &nbsp;|&nbsp;
+        {% if post.get_next_by_created_date %}
+            <a href="{{ post.get_next_post.get_absolute_url }}" title="View Next Post">  
+                {{ post.get_next_post }} --&raquo;</a>        
+        {% endif %}
+    </p>
+
+    <p class="date"> {{ post.created_date|date:"Y-m-d" }} </p>
+    <br/>
+
+    <div class="body">
+        {{ post.content|linebreaks}}
+    </div>
+{% endblock content %}

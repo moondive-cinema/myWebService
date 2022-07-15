@@ -1,20 +1,27 @@
-<h2> Post Archives until {% now "Y-m-d" %} </h2>
+{% extends "base.html" %}
+{% load static %}
 
-<ul>
-    {% for date in date_list %}
-        <li style="display: inline">
-                <a href="{% url "blog:post_year_archive" date|date:"Y" %}">{{ date|date:"Y"}} </a>
-        </li>     
-    {% endfor %}  
-</ul>
-<bt/>
-<div>
+{% block title %} Post Archive {% endblock %}
+
+{% block content %}
+    <h2> Post Archives until {% now "Y-m-d" %} </h2>
+
     <ul>
-        {% for post in object_list %}
-            <li> 
-                {{ post.created_date|date:"Y-m-d" }}:&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="{{ post.get_absolute_url }}"><strong> {{ post.title }} </strong></a>
-            </li>
-        {% endfor %}       
+        {% for date in date_list %}
+            <li style="display: inline">
+                    <a href="{% url "blog:post_year_archive" date|date:"Y" %}">{{ date|date:"Y"}} </a>
+            </li>     
+        {% endfor %}  
     </ul>
-</div>
+    <bt/>
+    <div>
+        <ul>
+            {% for post in object_list %}
+                <li> 
+                    {{ post.created_date|date:"Y-m-d" }}:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ post.get_absolute_url }}"><strong> {{ post.title }} </strong></a>
+                </li>
+            {% endfor %}       
+        </ul>
+    </div>
+{% endblock content %}

@@ -135,3 +135,9 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# node.js module manager
+node_modules/
+
+# 어드민 계정정보
+account-admin.txt
