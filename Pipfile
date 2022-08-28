@@ -5,8 +5,17 @@ name = "pypi"
 
 [packages]
 django = "==4.1"
+django-taggit = "*"
+django-taggit-templatetags2 = "*"
+django-widget-tweaks = "*"
+pillow = "*"
+pytz = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
 python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true
