@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
+        "DISQUS",
         "taggit",
+        "templatetags",
         "wrma"
     ],
     "python.formatting.provider": "black", 

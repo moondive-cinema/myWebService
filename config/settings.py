@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "taggit.apps.TaggitAppConfig",
     "taggit_templatetags2",
+    "widget_tweaks",
     "bookmark.apps.BookmarkConfig",
     "blog.apps.BlogConfig",
+    "photo.apps.PhotoConfig",
 ]
 
 MIDDLEWARE = [
@@ -137,7 +139,18 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
+# Login
+
+LOGIN_REDIRECT_URL = "/"
+
+
 # Taggit
 
 TAGGIT_CASE_INSENSITIVE = True
 TAGGIT_LIMIT = 50
+
+
+# Disqus
+
+DISQUS_SHORTNAME = "pydjango-moon"
+DISQUS_MY_DOMAIN = "http://127.0.0.1:8000"
