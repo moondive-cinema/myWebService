@@ -1,4 +1,5 @@
 from pydoc import describe
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from photo.fields import ThumbnailImageField
@@ -7,6 +8,9 @@ from photo.fields import ThumbnailImageField
 class Album(models.Model):
     name = models.CharField(max_length=40)
     description = models.CharField("One Line Description", max_length=100, blank=True)
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="OWNER", blank=True, null=True
+    )
 
     class Meta:
         ordering = ("name",)
@@ -24,6 +28,9 @@ class Photo(models.Model):
     description = models.TextField("Photo Description", blank=True)
     image = ThumbnailImageField(upload_to="photo/%Y/%m")
     upload_dt = models.DateTimeField("Upload Date", auto_now_add=True)
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="OWNER", blank=True, null=True
+    )
 
     class Meta:
         ordering = ("title",)

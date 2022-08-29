@@ -1,6 +1,18 @@
 from taggit.models import Tag
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
-from django.views.generic import ListView, DetailView, TemplateView
+from django.db.models import Q
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView,
+    DetailView,
+    TemplateView,
+    FormView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from django.views.generic.dates import (
     ArchiveIndexView,
     YearArchiveView,
@@ -8,9 +20,7 @@ from django.views.generic.dates import (
     DayArchiveView,
     TodayArchiveView,
 )
-from django.views.generic import FormView
-from django.db.models import Q
-from django.shortcuts import render
+from config.views import OwnerOnlyMixin
 from .models import Post
 from .forms import PostSearchForm
 
@@ -19,7 +29,7 @@ class PostLV(ListView):
     model = Post
     template_name = "blog/post_all.html"
     context_object_name = "posts"
-    paginate_by = 4
+    paginate_by = 5
 
 
 class PostDV(DetailView):
@@ -34,6 +44,34 @@ class PostDV(DetailView):
         ] = f"{settings.DISQUS_MY_DOMAIN}{self.object.get_absolute_url()}"
         context["disqus_title"] = f"{self.object.slug}"
         return context
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ["title", "description", "content", "tags"]
+    success_url = reverse_lazy("blog:index")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+
+class PostChangeLV(LoginRequiredMixin, ListView):
+    template_name = "blog/post_change_list.html"
+
+    def get_queryset(self):
+        return Post.objects.filter(owner=self.request.user)
+
+
+class PostUpdateView(OwnerOnlyMixin, UpdateView):
+    model = Post
+    fields = ["title", "description", "content", "tags"]
+    success_url = reverse_lazy("blog:index")
+
+
+class PostDeleteView(OwnerOnlyMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy("blog:index")
 
 
 class PostAV(ArchiveIndexView):

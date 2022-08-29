@@ -36,11 +36,16 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Util
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">    
                             <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a></li>
-                            <li><a class="dropdown-item" href="{% url 'blog:search' %}">Search</a></li>
+                            {% if request.user.is_active %}                 
+                            <li><a class="dropdown-item" href="{% url 'bookmark:change' %}">Edit My Bookmarks</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog:change' %}">Edit My Posts</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url 'blog:post_archive' %}">Post Archive</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog:search' %}">Post Search</a></li>
                         </ul>
                     </li>
                 </ul>

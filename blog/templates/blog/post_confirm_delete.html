@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}post_confirm_delete.html{% endblock %}
+
+{% block content %}
+
+    <h1>Post Delete</h1>
+    <br>
+
+    <form action="." method="post" class="card pt-3"> {% csrf_token %}
+        <p class="px-5">{{ object }} 포스트를 삭제할까요?</p>
+        <input type="submit" value="Confirm Delete" class="btn btn-danger btn-sm"/> 
+    </form>
+
+{% endblock %}

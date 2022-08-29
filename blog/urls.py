@@ -7,6 +7,10 @@ urlpatterns = [
     path("", views.PostLV.as_view(), name="index"),
     path("post/", views.PostLV.as_view(), name="post_list"),
     re_path(r"^post/(?P<slug>[-\w]+)/$", views.PostDV.as_view(), name="post_detail"),
+    path("add/", views.PostCreateView.as_view(), name="add"),
+    path("change/", views.PostChangeLV.as_view(), name="change"),
+    path("update/<int:pk>/", views.PostUpdateView.as_view(), name="update"),
+    path("delete/<int:pk>/", views.PostDeleteView.as_view(), name="delete"),
     path("archive/", views.PostAV.as_view(), name="post_archive"),
     path("archive/<int:year>/", views.PostYAV.as_view(), name="post_year_archive"),
     path(

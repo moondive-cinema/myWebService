@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}post_change_list.html{% endblock %}
+
+{% block content %}
+
+<h1>포스트 ({{ user }})</h1>
+<div class="text-right"><a class="btn btn-outline-secondary" href="{% url 'blog:add' %}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;작성하기</a></div>
+<table class="table table-striped mt-1">
+    <thead>
+        <tr class="table-dark">
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.title }}</a></td>
+            <td>{{ object.description }} </td>
+            <td><a href="{% url 'blog:update' object.id %}"><i class="fa fa-pencil"></i></a></td>
+            <td><a href="{% url 'blog:delete' object.id %}"><i class="fa fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

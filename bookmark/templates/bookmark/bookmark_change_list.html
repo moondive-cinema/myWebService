@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}bookmark_change_list.html{% endblock %}
+
+{% block content %}
+
+<h2>북마크 ({{ user }})</h2>
+<div class="text-right"><a class="btn btn-outline-secondary" href="{% url 'bookmark:add' %}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;작성하기</a></div>
+<table class="table table-striped mt-1">
+    <thead>
+        <tr class="table-dark">
+            <th>이름</th>
+            <th>설명</th>
+            <th>URL</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.title }}</a></td>
+            <td>{{ object.description }} </td>
+            <td class="">{{ object.url }} </td>
+            <td><a href="{% url 'bookmark:update' object.id %}"><i class="fa fa-pencil"></i></a></td>
+            <td><a href="{% url 'bookmark:delete' object.id %}"><i class="fa fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

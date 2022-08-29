@@ -4,4 +4,4 @@ from .models import Bookmark
 
 @admin.register(Bookmark)
 class BookmarkAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "url", "description")
+    list_display = ("id", "title", "url", "owner", "description")
